@@ -439,7 +439,7 @@ backend/admin-service/
 Example:
 
 ```env
-POSTGRES_URL_DEV=postgresql://postgres:Kapil@123@localhost:5432/contest_admin
+POSTGRES_URL_DEV=postgresql://postgres:ABCDEFGH@localhost:5432/contest_admin
 PORT_DEV=5002
 MODE=development
 USER_SERVICE_URL="http://localhost:5001"
