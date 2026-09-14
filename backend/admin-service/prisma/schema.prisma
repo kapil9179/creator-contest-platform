@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PrizeTier {
+  GRAND_PRIZE
+  CONSISTENCY_FIRST
+  CONSISTENCY_SECOND
+  TOP_PERFORMER
+  CATEGORY_FIRST
+  CATEGORY_SECOND
+}
+
+enum KycStatus {
+  NOT_REQUESTED
+  REQUESTED
+  PASSED
+  FAILED
+}
+
+model Winner {
+  id        Int       @id @default(autoincrement())
+  userId    String    @unique
+  tier      PrizeTier
+  category  String?
+  kycStatus KycStatus @default(NOT_REQUESTED)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([tier])
+  @@index([kycStatus])
+}
